@@ -4,9 +4,9 @@ require.config({
   paths: {
     // Make certain paths easier to access.
     "vendor": "../vendor",
-    "models": "app/models",
-    "views": "app/views",
-    "collections": "app/collections",
+    "models": "modules/models",
+    "views": "modules/views",
+    "collections": "modules/collections",
 
     // Almond is used to lighten the output filesize.
     "almond": "../vendor/bower/almond/almond",
