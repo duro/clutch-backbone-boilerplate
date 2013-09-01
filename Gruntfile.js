@@ -7,8 +7,13 @@ module.exports = function(grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
 
-    // Empty and remove `dist/` directory.
-    clean: ["<%= pkg.buildDir %>/<%= pkg.name %>"],
+    // Empty and remove build directory.
+    // NOTE: This is a forced clean.
+    clean: {
+      build: {
+        src: ["<%= pkg.buildDir %>/<%= pkg.name %>"]
+      }
+    },
 
     // Run your source code through JSHint's defaults.
     jshint: ["app/**/*.js"],
@@ -75,9 +80,15 @@ module.exports = function(grunt) {
   // Grunt BBB tasks.
   grunt.loadNpmTasks("grunt-bbb-requirejs");
 
-  // When running the default Grunt command, just lint the code.
-  grunt.registerTask("default", [
-    "clean", "jshint", "copy", "requirejs"
-  ]);
+  // The default command
+  // NOTE: This command will fail unless you use --force
+  // This is because it tries to delete a folder outside the
+  // current working directory. This is intentional.
+  grunt.registerTask('default', ['clean', 'build']);
+
+  // The build command.
+  // NOTE: This will NOT clean the directory first. This task
+  // expects that you will have done that in the parent runner.
+  grunt.registerTask("build", ["jshint", "copy", "requirejs"]);
 
 };
