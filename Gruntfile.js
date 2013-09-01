@@ -4,11 +4,11 @@ module.exports = function(grunt) {
   "use strict";
 
   grunt.initConfig({
-    // Path variables
-    buildDir: '../../../public/statics/javascripts/apps',
+    // Metadata.
+    pkg: grunt.file.readJSON('package.json'),
 
     // Empty and remove `dist/` directory.
-    clean: ["<%= buildDir %>/admin"],
+    clean: ["<%= pkg.buildDir %>/<%= pkg.name %>"],
 
     // Run your source code through JSHint's defaults.
     jshint: ["app/**/*.js"],
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
           // Setting the base url to the distribution directory allows the
           // Uglify minification process to correctly map paths for Source
           // Maps.
-          baseUrl: "<%= buildDir %>/admin/app",
+          baseUrl: "<%= pkg.buildDir %>/<%= pkg.name %>/app",
 
           // Include Almond to slim down the built filesize.
           name: "almond",
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
           wrap: true,
 
           // Output file.
-          out: "<%= buildDir %>/admin/source.min.js",
+          out: "<%= pkg.buildDir %>/<%= pkg.name %>/source.min.js",
 
           // Enable Source Map generation.
           generateSourceMaps: true,
@@ -60,8 +60,8 @@ module.exports = function(grunt) {
     copy: {
       release: {
         files: [
-          { expand: true, src: ["app/**"], dest: "<%= buildDir %>/admin/" },
-          { expand: true, src: "vendor/**", dest: "<%= buildDir %>/admin/" }
+          { expand: true, src: ["app/**"], dest: "<%= pkg.buildDir %>/<%= pkg.name %>/" },
+          { expand: true, src: "vendor/**", dest: "<%= pkg.buildDir %>/<%= pkg.name %>/" }
         ]
       }
     }
