@@ -4,7 +4,7 @@
   "author": "Adam Duro",
   "description": "A Backbone Boilerplate modified to be used in a Clutch app",
 
-  "buildDir": "../../../public/statics/javascripts/apps",
+  "buildDir": "../../../public/statics/apps",
 
   "devDependencies": {
     "grunt": "~0.4.1",
