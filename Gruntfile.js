@@ -10,6 +10,7 @@ module.exports = function(grunt) {
     // Empty and remove build directory.
     // NOTE: This is a forced clean.
     clean: {
+      options: { force: true },
       build: {
         src: ["<%= pkg.buildDir %>/<%= pkg.name %>"]
       }
@@ -69,6 +70,13 @@ module.exports = function(grunt) {
           { expand: true, src: "vendor/**", dest: "<%= pkg.buildDir %>/<%= pkg.name %>/" }
         ]
       }
+    },
+
+    watch: {
+      scripts: {
+        files: ['app/**/*.js'],
+        tasks: ['default']
+      }
     }
   });
 
@@ -76,14 +84,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks("grunt-contrib-watch");
 
   // Grunt BBB tasks.
   grunt.loadNpmTasks("grunt-bbb-requirejs");
 
   // The default command
-  // NOTE: This command will fail unless you use --force
-  // This is because it tries to delete a folder outside the
-  // current working directory. This is intentional.
   grunt.registerTask('default', ['clean', 'build']);
 
   // The build command.
