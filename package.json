@@ -1,8 +1,8 @@
 {
-  "name": "clutch-backbone-boilerplate",
-  "version": "0.1.0",
-  "author": "Adam Duro",
-  "description": "A Backbone Boilerplate modified to be used in a Clutch app",
+  "name": "<%= appName %>",
+  "version": "<%= version %>",
+  "author": "<%= realname %>",
+  "description": "<%= appDescription %>",
 
   "buildDir": "../../../public/statics/apps",
 
