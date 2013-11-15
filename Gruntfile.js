@@ -72,7 +72,7 @@ module.exports = function(grunt) {
       }
     },
 
-    watch: {
+    delta: {
       scripts: {
         files: ['app/**/*.js'],
         tasks: ['default']
@@ -88,6 +88,10 @@ module.exports = function(grunt) {
 
   // Grunt BBB tasks.
   grunt.loadNpmTasks("grunt-bbb-requirejs");
+
+  // Watch Alias
+  grunt.renameTask('watch', 'delta');
+  grunt.registerTask('watch', [ 'build', 'delta' ]);
 
   // The default command
   grunt.registerTask('default', ['clean', 'build']);
